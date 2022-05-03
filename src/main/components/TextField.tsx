@@ -9,6 +9,7 @@ const TextField = (props: any) => {
       onChange={props?.onChange}
       size={props?.size}
       fullWidth={props?.fullWidth}
+      multiline={props?.multiline}
       // autoComplete="current-password"
       // variant="filled"
     />

@@ -8,12 +8,23 @@ const Card = styled("div")({
   height: "40%",
   backgroundColor: "pink",
   margin: "2%",
+  borderRadius: 7,
+});
+
+const TitleDiv = styled("div")({
+  width: "100%",
+  height: "10%",
+  margin: 20,
+  fontSize: 30,
+  marginLeft: "auto",
+  marginRight: "auto",
 });
 
 const TaskCard = (props: any) => {
   return (
     <Card>
-      {props?.title}
+      <TitleDiv>{props?.title}</TitleDiv>
+
       {props?.detail}
       {props?.date}
     </Card>

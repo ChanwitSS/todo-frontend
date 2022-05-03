@@ -1,18 +1,14 @@
 import { combineReducers, createStore, applyMiddleware } from "redux";
 import thunkMiddleware from "redux-thunk";
+import AuthReducer from "./reducers/auth";
 import TaskReducer from "./reducers/task";
-import PropTypes from 'prop-types';
 
 const rootReducer = combineReducers({
+  auth: AuthReducer,
   task: TaskReducer,
 //   user: UserReducer,
 });
 
 const store = createStore(rootReducer, applyMiddleware(thunkMiddleware));
-
-// store.propTypes = {
-//     task: TaskReducer,
-//     // user: UserReducer,
-// };
 
 export default store;
