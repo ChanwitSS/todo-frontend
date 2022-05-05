@@ -1,5 +1,5 @@
 import { styled, experimental_sx as sx } from "@mui/system";
-import LoginComponent from "../components/LoginComponent";
+import LoginForm from "../components/LoginForm";
 
 const Page = styled("div")({
   backgroundColor: "white",
@@ -29,7 +29,7 @@ const Login = () => {
     <Page>
       <BackgroundBox />
       <LoginBox>
-        <LoginComponent></LoginComponent>
+        <LoginForm></LoginForm>
       </LoginBox>
     </Page>
   );

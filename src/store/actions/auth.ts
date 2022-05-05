@@ -1,4 +1,3 @@
-
 import axios from "../../axios";
 import { authAction } from "../reducers/auth";
 
@@ -10,7 +9,7 @@ export const loginLoading = () => {
 };
 
 export const loginSuccess = (data: any) => {
-  localStorage.setItem('token', data);
+  localStorage.setItem("token", data);
   return {
     type: authAction.LOGIN_SUCCESS,
     data,
@@ -47,5 +46,12 @@ export const alreadyLogin = () => {
 export const notLogin = () => {
   return {
     type: authAction.NOT_LOGIN,
+  };
+};
+
+export const logout = () => {
+  localStorage.removeItem("token");
+  return {
+    type: authAction.LOGOUT,
   };
 };

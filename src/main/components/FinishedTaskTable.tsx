@@ -5,7 +5,7 @@ import {
   deleteTask,
   editTask,
   newTask,
-  getIncomingTaskList,
+  getTaskList,
 } from "../../store/actions/task";
 
 const Table = (props: any) => {
@@ -54,70 +54,36 @@ const Table = (props: any) => {
         }
       },
     },
-    {
-      field: "action",
-      headerName: "Action",
-      sortable: false,
-      width: 220,
-      renderCell: (record: any) => {
-        return (
-          <>
-            <Button
-              style={{ backgroundColor: "#d0efff" }}
-              size="small"
-              onClick={() => onEdit(record?.row?.id)}
-            >
-              Edit
-            </Button>
-            <Button
-              style={{ marginLeft: "5%", backgroundColor: "#d0efff" }}
-              size="small"
-              onClick={() => onDelete(record?.row?.id)}
-            >
-              Delete
-            </Button>
-          </>
-        );
-      },
-    },
+    // {
+    //   field: "action",
+    //   headerName: "Action",
+    //   sortable: false,
+    //   width: 220,
+    //   renderCell: (record: any) => {
+    //     return <></>;
+    //   },
+    // },
   ];
 
-  const onCreate = () => {
-    dispatch(newTask());
-  };
+  //   const onEdit = (id: number) => {
+  //     dispatch(editTask(id));
+  //   };
 
-  const onEdit = (id: number) => {
-    dispatch(editTask(id));
-  };
-
-  const onDelete = (id: number) => {
-    dispatch(deleteTask(id)).then(() => {
-      dispatch(getIncomingTaskList());
-    });
-  };
+  //   const onDelete = (id: number) => {
+  //     dispatch(deleteTask(id)).then(() => {
+  //       dispatch(getTaskList());
+  //     });
+  //   };
 
   return (
     <div style={{ height: "100%", width: "100%" }}>
-      <div style={{ height: "10%" }}>
-        <div style={{ float: "right", marginRight: "2%", paddingTop: "1.5%" }}>
-          <Button
-            size="small"
-            style={{ backgroundColor: "#d0efff" }}
-            onClick={onCreate}
-          >
-            Create Task
-          </Button>
-        </div>
-      </div>
-      <div style={{ height: "90%" }}>
-        <DataGrid
-          rows={props?.data ?? []}
-          columns={columns}
-          pageSize={9}
-          // rowsPerPageOptions={[10]}
-          // checkboxSelection
-        />
-      </div>
+      <DataGrid
+        rows={props?.data ?? []}
+        columns={columns}
+        pageSize={9}
+        // rowsPerPageOptions={[10]}
+        // checkboxSelection
+      />
     </div>
   );
 };

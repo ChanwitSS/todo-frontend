@@ -6,7 +6,7 @@ import {
   createTask,
   updateTask,
   closeEditTask,
-  getTaskList,
+  getIncomingTaskList,
 } from "../../store/actions/task";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
@@ -21,13 +21,19 @@ const FormBox = styled("div")({
   height: "60%",
 });
 
-const TextFieldBox = styled("div")({
+const FieldBox = styled("div")({
   display: "flex",
   flexDirection: "column",
-  marginTop: "5%",
+  marginTop: "3%",
   width: "65%",
   marginLeft: "auto",
   marginRight: "auto",
+});
+
+const Header = styled("text")({
+  fontSize: 40,
+  textAlign: "center",
+  marginTop: "10%",
 });
 
 const Form = (props: any) => {
@@ -44,7 +50,7 @@ const Form = (props: any) => {
     (form ? dispatch(createTask(form)) : dispatch(updateTask(id, form))).then(
       () => {
         dispatch(closeEditTask());
-        dispatch(getTaskList());
+        dispatch(getIncomingTaskList());
       }
     );
   };
@@ -71,7 +77,10 @@ const Form = (props: any) => {
       aria-describedby="modal-modal-description"
     >
       <FormBox>
-        <TextFieldBox>
+        <FieldBox>
+          <Header>{id ? "EDIT TASK" : "CREATE TASK"}</Header>
+        </FieldBox>
+        <FieldBox>
           <TextField
             id="name-input"
             label="Name"
@@ -81,9 +90,10 @@ const Form = (props: any) => {
             defaultValue={form?.name}
             value={form?.name}
             onChange={onInput("name")}
+            required
           />
-        </TextFieldBox>
-        <TextFieldBox>
+        </FieldBox>
+        <FieldBox>
           <TextField
             id="detail-input"
             label="Detail"
@@ -94,9 +104,10 @@ const Form = (props: any) => {
             defaultValue={form?.detail}
             value={form?.detail}
             onChange={onInput("detail")}
+            required
           />
-        </TextFieldBox>
-        <TextFieldBox>
+        </FieldBox>
+        <FieldBox>
           <LocalizationProvider dateAdapter={AdapterDateFns}>
             <DateTimePicker
               renderInput={(props) => <TextField {...props} />}
@@ -111,8 +122,8 @@ const Form = (props: any) => {
               }}
             />
           </LocalizationProvider>
-        </TextFieldBox>
-        <TextFieldBox>
+        </FieldBox>
+        <FieldBox>
           <LocalizationProvider dateAdapter={AdapterDateFns}>
             <DateTimePicker
               renderInput={(props) => <TextField {...props} />}
@@ -126,12 +137,12 @@ const Form = (props: any) => {
               }}
             />
           </LocalizationProvider>
-        </TextFieldBox>
-        <TextFieldBox>
+        </FieldBox>
+        <FieldBox style={{ backgroundColor: '#d0efff' }}>
           <Button size="large" onClick={() => onSubmit()}>
             {id ? "Edit" : "create"}
           </Button>
-        </TextFieldBox>
+        </FieldBox>
       </FormBox>
     </Modal>
   );

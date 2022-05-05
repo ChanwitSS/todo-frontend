@@ -1,9 +1,9 @@
 import { styled } from "@mui/system";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { closeEditTask, getIncomingTaskList } from "../../store/actions/task";
+import { closeEditTask, getFinishedTaskList } from "../../store/actions/task";
 import Form from "../components/TaskForm";
-import TaskTable from "../components/TaskTable";
+import TaskTable from "../components/FinishedTaskTable";
 
 const Page = styled("div")({
   height: "90%",
@@ -28,7 +28,7 @@ const Homepage = () => {
   const tasks = useSelector((store: any) => store.task.all);
   const dispatch: any = useDispatch();
   const onFetch = () => {
-    dispatch(getIncomingTaskList());
+    dispatch(getFinishedTaskList());
   };
   useEffect(() => {
     onFetch();

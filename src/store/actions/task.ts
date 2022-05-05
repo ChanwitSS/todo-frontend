@@ -40,6 +40,42 @@ export const getTaskList = () => {
   };
 };
 
+export const getIncomingTaskList = () => {
+  return (dispatch: any) => {
+    dispatch(getTaskListLoading());
+    return axios
+      .get(`/tasks/incoming`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      })
+      .then((response) => {
+        dispatch(getTaskListSuccess(response?.data, response?.data?.count));
+      })
+      .catch((error) => {
+        dispatch(getTaskListFailed(error?.response?.data?.message));
+      });
+  };
+};
+
+export const getFinishedTaskList = () => {
+  return (dispatch: any) => {
+    dispatch(getTaskListLoading());
+    return axios
+      .get(`/tasks/finished`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      })
+      .then((response) => {
+        dispatch(getTaskListSuccess(response?.data, response?.data?.count));
+      })
+      .catch((error) => {
+        dispatch(getTaskListFailed(error?.response?.data?.message));
+      });
+  };
+};
+
 // VIEW
 // export const viewTaskLoading = () => {
 //   return {
